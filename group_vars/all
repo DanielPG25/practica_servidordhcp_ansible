@@ -1,6 +1,6 @@
-ip_cliente: 10.0.0.2
+ip_privada1: 192.168.100.1
+ip_privada2: 192.168.200.1
 mascara_red: 255.255.255.0
-gateway_cliente: 10.0.0.1
-ip_router: 10.0.0.1
-direccion_red: 10.0.0.0/24
-interfaz_salida: eth1
+direccion_red_privada1: 192.168.100.0/24
+direccion_red_privada2: 192.168.200.0/24
+interfaz_salida: ens3

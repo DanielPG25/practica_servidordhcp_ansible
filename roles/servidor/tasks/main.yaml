@@ -3,7 +3,7 @@
       pkg:
         - isc-dhcp-server
         - iptables
-- name: Cambiar la plantilla de network/interfaces
+- name: "Cambiar la plantilla de network/interfaces"
   template:
     src: interfaces
     dest: /etc/network/interfaces
@@ -13,16 +13,36 @@
   notify:
     - reiniciar maquina
 
-- name: Añadir el bit de forwarding
+- name: "Añadir el bit de forwarding"
   sysctl:
     name: net.ipv4.ip_forward
     value: "1"
     sysctl_set: yes
 
-- name: Añadir clave pública ssh
+- name: "Añadir clave pública ssh"
   authorized_key:
     user: vagrant
     state: present
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     
-- 
+- name: "Cambiar la plantilla de /etc/dhcp/dhcpd.conf"
+  template:
+    src: dhcpd.conf
+    dest: /etc/dhcp/dhcpd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - reniciar dhcp
+
+- name: "Cambiar la plantilla de /etc/default/isc-dhcp-server"
+  template:
+    src: isc-dhcp-server
+    dest: /etc/default/isc-dhcp-server
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - reniciar dhcp
+
+    

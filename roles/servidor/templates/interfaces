@@ -15,13 +15,13 @@ iface ens3 inet dhcp
 allow_hotplug ens8
 auto ens8
 iface ens8 inet static
-        address 192.168.100.1
-        netmask 255.255.255.0
-        post-up iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o ens3 -j MASQUERADE
+        address {{ip_privada1}}
+        netmask {{mascara_red}}
+        post-up iptables -t nat -A POSTROUTING -s {{direccion_red_privada1}} -o {{interfaz_salida}} -j MASQUERADE
 # Red privada 2
 allow_hotplug ens9
 auto ens9
 iface ens9 inet static
-        address 192.168.200.1
-        netmask 255.255.255.0
-        post-up iptables -t nat -A POSTROUTING -s 192.168.200.0/24 -o ens3 -j MASQUERADE
+        address {{ip_privada2}}
+        netmask {{mascara_red}}
+        post-up iptables -t nat -A POSTROUTING -s {{direccion_red_privada2}} -o {{interfaz_salida}} -j MASQUERADE
