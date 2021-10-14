@@ -1,8 +1,8 @@
 - name: "Instala los paquetes necesarios"
-    apt:
-      pkg:
-        - isc-dhcp-server
-        - iptables
+  apt:
+    pkg:
+      - isc-dhcp-server
+      - iptables
 - name: "Cambiar la plantilla de network/interfaces"
   template:
     src: interfaces
@@ -21,7 +21,7 @@
 
 - name: "Añadir clave pública ssh"
   authorized_key:
-    user: vagrant
+    user: debian
     state: present
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     
@@ -33,7 +33,7 @@
     group: root
     mode: '0644'
   notify:
-    - reniciar dhcp
+    - reiniciar dhcp
 
 - name: "Cambiar la plantilla de /etc/default/isc-dhcp-server"
   template:
@@ -43,6 +43,6 @@
     group: root
     mode: '0644'
   notify:
-    - reniciar dhcp
+    - reiniciar dhcp
 
     
