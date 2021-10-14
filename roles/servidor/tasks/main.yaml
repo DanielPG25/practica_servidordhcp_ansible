@@ -1,0 +1,28 @@
+- name: "Instala los paquetes necesarios"
+    apt:
+      pkg:
+        - isc-dhcp-server
+        - iptables
+- name: Cambiar la plantilla de network/interfaces
+  template:
+    src: interfaces
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - reiniciar maquina
+
+- name: Añadir el bit de forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    sysctl_set: yes
+
+- name: Añadir clave pública ssh
+  authorized_key:
+    user: vagrant
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    
+- 

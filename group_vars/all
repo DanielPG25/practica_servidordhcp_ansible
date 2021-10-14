@@ -1,0 +1,6 @@
+ip_cliente: 10.0.0.2
+mascara_red: 255.255.255.0
+gateway_cliente: 10.0.0.1
+ip_router: 10.0.0.1
+direccion_red: 10.0.0.0/24
+interfaz_salida: eth1

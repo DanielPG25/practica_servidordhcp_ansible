@@ -1,0 +1,5 @@
+- hosts: servidor
+  become: true
+  roles:
+    - role: servidor
+
